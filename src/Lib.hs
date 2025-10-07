@@ -1,4 +1,4 @@
-module Lib where
+module Lib (caesar, rot13, rot135, count, frequency, nonZeroFrequencies, bestGuessDecrypt) where
 
 
 type Alphabet = [Char]
@@ -21,20 +21,20 @@ isLower c = c `elem` lowerAlphabet
 isDigit :: Char -> Bool
 isDigit c = c `elem` digits
 
-isMisc :: Char -> Bool
--- isMisc c = not (isUpper c || isLower c || isDigit c)
-isMisc c = c `notElem` (lowerAlphabet ++ upperAlphabet ++ digits)
+-- isMisc :: Char -> Bool
+-- -- isMisc c = not (isUpper c || isLower c || isDigit c)
+-- isMisc c = c `notElem` (lowerAlphabet ++ upperAlphabet ++ digits)
 
 
 listLength :: [Char] -> Int
 listLength [] = 0
-listLength (x:xs) = 1 + listLength (xs)
+listLength (_:xs) = 1 + listLength (xs)
 
 elementIndex :: Char -> [Char] -> Maybe Int
 elementIndex c xs = lookup c $ zip xs [0..]
 
 indexOf :: Char -> Alphabet -> Int
-lengthOf _ [] = undefined
+indexOf _ [] = undefined
 indexOf c (x:xs) 
     | c==x = 0
     | otherwise = 1 + indexOf c xs
